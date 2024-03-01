@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  width: 300px;
+  padding: 16px;
+  background-color: white;
+  margin: 0 auto;
+  margin-top: 50px;
+  border: 1px solid black;
+  border-radius: 4px;
+}
+
+input[type=text], input[type=datetime-local], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <form action="/submit_reservation" method="post">
+    <label for="room">會議室</label>
+    <select id="room" name="room">
+      <option value="room1">會議室 1</option>
+      <option value="room2">會議室 2</option>
+    </select>
+
+    <label for="start">開始時間</label>
+    <input type="datetime-local" id="start" name="start" step="3600" value="2024-03-01T08:00:00">
+
+    <label for="end">結束時間</label>
+    <input type="datetime-local" id="end" name="end" step="3600" value="2024-03-01T09:00:00">
+
+    <input type="submit" value="預約">
+  </form>
+</div>
+<script>
+  document.getElementById('start').addEventListener('change', function (e) {
+    var time = e.target.value;
+    var minutes = time.split(':')[1];
+    if (minutes != '00') {
+      alert('請選擇整點的時間');
+    }
+  });
+  document.getElementById('end').addEventListener('change', function (e) {
+      var time = e.target.value;
+      var minutes = time.split(':')[1];
+      if (minutes != '00') {
+        alert('請選擇整點的時間');
+      }
+    });
+</script>
+</body>
+</html>
